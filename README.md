@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+rails db:drop
+rails db:create
+rails db:migrate
 
-Things you may want to cover:
+rails s
 
-* Ruby version
+* Crear nuevo jugador
+* POST http://127.0.0.1:3000/user body: {"name" : "braulio"}
 
-* System dependencies
+* Crear nuevo juego
+* POST http://127.0.0.1:3000/game body : {"name" : "juego 1"}
 
-* Configuration
+* Realizar movimiento
+* PUT http://127.0.0.1:3000/game/1 {"posicion" : 5, "simbolo" : "X"} 
 
-* Database creation
+* Mostrar movimientos
+* http://127.0.0.1:3000/game
 
-* Database initialization
+* Mostrar movimiento especifico
+* http://127.0.0.1:3000/game/3
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
