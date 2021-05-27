@@ -5,6 +5,7 @@ class CreateGames < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :tablero
       t.string :simbolo
+      t.string :lastplay, default: ""
 
       t.timestamps
     end

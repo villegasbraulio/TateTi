@@ -1,16 +1,29 @@
 class UserController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
 
     def create
-        user = User.new(user_params)
+        user = User.create(user_params)
+
+        if user.id % 2 == 0 
+          user.turno = "X"
+      else
+          user.turno = "O"
+      end
+
+      
     
         if user.save
           render json: user
         else
-          render json: format_error(request.path, user.errors.full_messages), status: 401)
+          render status: 401
         end
     end
 
+
+    def user_params
+      params.permit :turno, :id
+    end
 
 
 end

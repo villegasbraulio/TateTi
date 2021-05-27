@@ -22,6 +22,7 @@ def create
 
     game = Game.create (game_params) 
     game.tablero = Array.new 9,""
+    game.lastplay = "U"
 
     if game.save
     render json: game
@@ -40,21 +41,25 @@ def update
     posicion = json ["posicion"] 
     toblerone = JSON.parse (game.tablero)  ##copia del array que tengo en string
 
+    if  game.lastplay == symbol 
+    return
+    else game.lastplay = symbol
+    end
+ 
+    
+ ## no deja poner 2 en el mismo casillero
+
+    if toblerone [posicion] == ""
     toblerone [posicion] = symbol
+    else
+    return 
+    end
     game.tablero = toblerone
     game.save
     render json: game
-    #if game.update game_params
+
     
-    #game.tablerochange 
-    #render json: game.tablerochange
-    #else
-    #render game.errors.full_message
-    #end
-
-
-    # ##como ir a modificar el arreglo
-
+    
 end
 
 def game_params
